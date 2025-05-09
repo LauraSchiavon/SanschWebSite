@@ -14,7 +14,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center mb-4">
               <Image
-                src="/image/logoAzul.png"
+                src="/image/logo.png"
                 alt="Logo da Sansch"
                 width={120}
                 height={40}
