@@ -79,7 +79,7 @@ export default function Footer() {
                 "Criação de Conteúdo",
                 "Meta Ads",
                 "Google Ads",
-                "Estratégia Digital",
+                "Gestão de Tráfego",
               ].map((service) => (
                 <li key={service}>
                   <Link
