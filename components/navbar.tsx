@@ -1,51 +1,53 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { Menu, X, ChevronDown } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const navLinks = [
-  { href: '#hero', label: 'Início' },
-  { href: '#about', label: 'Sobre' },
-  { href: '#services', label: 'Serviços' },
-  { href: '#testimonials', label: 'Depoimentos' },
-  { href: '#contact', label: 'Contato' },
-]
+  { href: "#hero", label: "Início" },
+  { href: "#about", label: "Sobre" },
+  { href: "#services", label: "Serviços" },
+  { href: "#testimonials", label: "Depoimentos" },
+  { href: "#contact", label: "Contato" },
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav 
+    <nav
       className={cn(
         "fixed w-full z-50 transition-all duration-300",
-        scrolled 
-          ? "bg-white shadow-md py-2" 
-          : "bg-transparent py-4"
+        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-[#14213D]">
-                Sansch<span className="text-[#FCA311]">.</span>
-              </span>
+              <Image
+                src="/image/logo.png"
+                alt="Logo da Sansch"
+                width={120}
+                height={40}
+              />
             </Link>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
@@ -60,13 +62,15 @@ export default function Navbar() {
               ))}
               <Button
                 className="bg-[#FCA311] hover:bg-[#e08b00] text-white transition-all duration-300 transform hover:scale-105"
-                onClick={() => window.open('https://wa.me/5514997342092', '_blank')}
+                onClick={() =>
+                  window.open("https://wa.me/5514997342092", "_blank")
+                }
               >
                 Fale Conosco
               </Button>
             </div>
           </div>
-          
+
           {/* Mobile Navigation Toggle */}
           <div className="md:hidden flex items-center">
             <button
@@ -99,7 +103,9 @@ export default function Navbar() {
             ))}
             <Button
               className="w-full mt-2 bg-[#FCA311] hover:bg-[#e08b00] text-white"
-              onClick={() => window.open('https://wa.me/5514997342092', '_blank')}
+              onClick={() =>
+                window.open("https://wa.me/5514997342092", "_blank")
+              }
             >
               Fale Conosco
             </Button>
@@ -107,5 +113,5 @@ export default function Navbar() {
         </div>
       )}
     </nav>
-  )
+  );
 }
