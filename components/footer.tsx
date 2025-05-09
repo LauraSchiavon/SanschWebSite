@@ -25,7 +25,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/sansch_agencia"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-[#FCA311] transition-colors"
@@ -33,20 +33,12 @@ export default function Footer() {
                 <Instagram size={20} />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61572360503890"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-[#FCA311] transition-colors"
               >
                 <Facebook size={20} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#FCA311] transition-colors"
-              >
-                <Linkedin size={20} />
               </a>
             </div>
           </div>
