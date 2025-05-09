@@ -56,7 +56,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
-              {["Início", "Sobre", "Serviços", "Depoimentos", "Contato"].map(
+              {["Início", "Sobre", "Serviços", "Resultados", "Contato"].map(
                 (item) => (
                   <li key={item}>
                     <Link
