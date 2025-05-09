@@ -7,22 +7,20 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#14213D] text-white">
+    <footer className="bg-[#14213D] text-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Logo + Descrição + Redes Sociais */}
           <div>
-            <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/image/logoAzul.png"
-                  alt="Logo da Sansch"
-                  width={120}
-                  height={40}
-                />
-              </Link>
-            </div>
-
-            <p className="text-gray-300 mb-4">
+            <Link href="/" className="flex items-center mb-4">
+              <Image
+                src="/image/logoAzul.png"
+                alt="Logo da Sansch"
+                width={120}
+                height={40}
+              />
+            </Link>
+            <p className="text-sm mb-4">
               Transformamos sua presença digital em resultados reais.
             </p>
             <div className="flex space-x-4">
@@ -30,7 +28,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-300 hover:text-[#FCA311] transition-colors"
+                className="hover:text-[#FCA311] transition-colors"
               >
                 <Instagram size={20} />
               </a>
@@ -38,7 +36,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-300 hover:text-[#FCA311] transition-colors"
+                className="hover:text-[#FCA311] transition-colors"
               >
                 <Facebook size={20} />
               </a>
@@ -46,34 +44,40 @@ export default function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-300 hover:text-[#FCA311] transition-colors"
+                className="hover:text-[#FCA311] transition-colors"
               >
                 <Linkedin size={20} />
               </a>
             </div>
           </div>
 
+          {/* Links Rápidos */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Links Rápidos</h3>
-            <ul className="space-y-2">
-              {["Início", "Sobre", "Serviços", "Resultados", "Contato"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      href={`#${item.toLowerCase()}`}
-                      className="text-gray-300 hover:text-[#FCA311] transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
+            <h3 className="text-base font-semibold mb-4">Links Rápidos</h3>
+            <ul className="space-y-2 text-sm">
+              {[
+                { href: "#hero", label: "Início" },
+                { href: "#about", label: "Sobre" },
+                { href: "#services", label: "Serviços" },
+                { href: "#testimonials", label: "Depoimentos" },
+                { href: "#contact", label: "Contato" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-[#FCA311] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* Serviços */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Serviços</h3>
-            <ul className="space-y-2">
+            <h3 className="text-base font-semibold mb-4">Serviços</h3>
+            <ul className="space-y-2 text-sm">
               {[
                 "Gestão de Redes Sociais",
                 "Criação de Conteúdo",
@@ -84,7 +88,7 @@ export default function Footer() {
                 <li key={service}>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-[#FCA311] transition-colors"
+                    className="hover:text-[#FCA311] transition-colors"
                   >
                     {service}
                   </Link>
@@ -93,13 +97,14 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Chamada para ação */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Vamos conversar?</h3>
-            <p className="text-gray-300 mb-4">
+            <h3 className="text-base font-semibold mb-4">Vamos conversar?</h3>
+            <p className="text-sm mb-4">
               Estamos prontos para transformar sua presença digital.
             </p>
             <Button
-              className="w-full bg-[#FCA311] hover:bg-[#e08b00] text-white flex items-center justify-center gap-2"
+              className="w-full bg-[#FCA311] hover:bg-[#e08b00] text-white flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-105"
               onClick={() =>
                 window.open("https://wa.me/5514997342092", "_blank")
               }
@@ -109,11 +114,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-700">
-          <p className="text-center text-gray-300">
-            &copy; {new Date().getFullYear()} Sansch. Todos os direitos
-            reservados.
-          </p>
+        <div className="mt-12 pt-8 border-t border-gray-200 text-center text-sm text-white">
+          &copy; {new Date().getFullYear()} Sansch. Todos os direitos
+          reservados.
         </div>
       </div>
     </footer>
