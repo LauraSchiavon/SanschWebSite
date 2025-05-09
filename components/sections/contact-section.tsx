@@ -1,63 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { 
-  Send, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  MessagesSquare 
-} from 'lucide-react'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
+import { motion } from "framer-motion";
+import { Send, Phone, Mail, MapPin, Clock, MessagesSquare } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: ''
-  })
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate form submission
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // In a real implementation, you would send the data to your backend or email service
-      console.log('Form submitted:', formData)
-      
-      setSubmitSuccess(true)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        message: ''
-      })
-    } catch (error) {
-      console.error('Error submitting form:', error)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,115 +49,105 @@ export default function ContactSection() {
           >
             <Card className="shadow-xl border-none overflow-hidden">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-[#14213D] mb-6">Envie-nos uma mensagem</h3>
-                
-                {submitSuccess ? (
-                  <div className="bg-green-50 p-6 rounded-lg border border-green-200 text-center">
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full text-green-500 mb-4">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <h4 className="text-xl font-semibold text-green-800 mb-2">Mensagem enviada!</h4>
-                    <p className="text-green-700">
-                      Agradecemos seu contato. Nossa equipe retornará em breve.
-                    </p>
-                    <Button 
-                      className="mt-4 bg-green-600 hover:bg-green-700"
-                      onClick={() => setSubmitSuccess(false)}
-                    >
-                      Enviar outra mensagem
-                    </Button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                          Nome completo
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                          E-mail
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                          Telefone
-                        </label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                          Empresa
-                        </label>
-                        <Input
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
-                        />
-                      </div>
-                    </div>
-                    
+                <h3 className="text-2xl font-bold text-[#14213D] mb-6">
+                  Envie-nos uma mensagem
+                </h3>
+                <form
+                  action="https://formsubmit.co/sansch.agencia@outlook.com"
+                  method="POST"
+                  className="space-y-4"
+                >
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input
+                    type="hidden"
+                    name="_next"
+                    value="https://sansch-web-site.vercel.app/obrigado"
+                  />
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                        Mensagem
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Nome completo
                       </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleChange}
+                      <Input
+                        id="name"
+                        name="name"
                         required
                         className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
                       />
                     </div>
-                    
-                    <Button
-                      type="submit"
-                      className="w-full bg-[#14213D] hover:bg-[#0c1528] text-white flex items-center justify-center gap-2"
-                      disabled={isSubmitting}
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        E-mail
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Telefone
+                      </label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Empresa
+                      </label>
+                      <Input
+                        id="company"
+                        name="company"
+                        className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      {isSubmitting ? (
-                        <>Enviando...</>
-                      ) : (
-                        <>
-                          <Send size={16} /> Enviar mensagem
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                )}
+                      Mensagem
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      required
+                      className="border-gray-300 focus:border-[#FCA311] focus:ring-[#FCA311] transition-colors"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#14213D] hover:bg-[#0c1528] text-white flex items-center justify-center gap-2"
+                  >
+                    <Send size={16} /> Enviar mensagem
+                  </Button>
+                </form>
               </CardContent>
             </Card>
           </motion.div>
@@ -220,21 +160,40 @@ export default function ContactSection() {
             transition={{ duration: 0.6 }}
           >
             <div className="bg-[#14213D] text-white p-8 rounded-xl shadow-xl h-full">
-              <h3 className="text-2xl font-bold mb-8">Informações de contato</h3>
-              
+              <h3 className="text-2xl font-bold mb-8">
+                Informações de contato
+              </h3>
               <div className="space-y-6">
                 {[
-                  { icon: <Phone className="h-5 w-5" />, title: 'Telefone', content: '+55 14 99734-2092' },
-                  { icon: <Mail className="h-5 w-5" />, title: 'E-mail', content: 'sansch.agencia@outlook.com' },
-                  { icon: <MapPin className="h-5 w-5" />, title: 'Endereço', content: 'Atendemos todo o Brasil' },
-                  { icon: <Clock className="h-5 w-5" />, title: 'Horário', content: 'Segunda a Sexta: 9h às 18h' }
+                  {
+                    icon: <Phone className="h-5 w-5" />,
+                    title: "Telefone",
+                    content: "+55 14 99734-2092",
+                  },
+                  {
+                    icon: <Mail className="h-5 w-5" />,
+                    title: "E-mail",
+                    content: "sansch.agencia@outlook.com",
+                  },
+                  {
+                    icon: <MapPin className="h-5 w-5" />,
+                    title: "Endereço",
+                    content: "Atendemos todo o Brasil",
+                  },
+                  {
+                    icon: <Clock className="h-5 w-5" />,
+                    title: "Horário",
+                    content: "Segunda a Sexta: 9h às 18h",
+                  },
                 ].map((item, index) => (
                   <div key={index} className="flex">
                     <div className="flex-shrink-0 w-12 h-12 bg-[#FCA311]/20 rounded-lg flex items-center justify-center text-[#FCA311]">
                       {item.icon}
                     </div>
                     <div className="ml-4">
-                      <h4 className="text-lg font-medium text-white">{item.title}</h4>
+                      <h4 className="text-lg font-medium text-white">
+                        {item.title}
+                      </h4>
                       <p className="text-gray-300">{item.content}</p>
                     </div>
                   </div>
@@ -242,10 +201,14 @@ export default function ContactSection() {
               </div>
 
               <div className="mt-12">
-                <h4 className="text-lg font-medium text-white mb-4">Precisa de uma resposta rápida?</h4>
+                <h4 className="text-lg font-medium text-white mb-4">
+                  Precisa de uma resposta rápida?
+                </h4>
                 <Button
                   className="w-full bg-[#FCA311] hover:bg-[#e08b00] text-white flex items-center justify-center gap-2"
-                  onClick={() => window.open('https://wa.me/5514997342092', '_blank')}
+                  onClick={() =>
+                    window.open("https://wa.me/5514997342092", "_blank")
+                  }
                 >
                   <MessagesSquare size={16} /> Fale conosco pelo WhatsApp
                 </Button>
@@ -255,5 +218,5 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
